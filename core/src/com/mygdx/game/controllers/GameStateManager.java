@@ -1,4 +1,4 @@
-package com.mygdx.game.states;
+package com.mygdx.game.controllers;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -33,8 +33,12 @@ public  GameStateManager()
     {
         states.peek().update(dt);
     }
-    public void render(SpriteBatch sb)
+    public void  render(SpriteBatch sb)
     {
         states.peek().render(sb);
+    }
+    public void dispose()
+    {
+        states.peek().dispose();
     }
 }

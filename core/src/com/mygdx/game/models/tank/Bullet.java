@@ -1,10 +1,10 @@
-package com.mygdx.game.sprites;
+package com.mygdx.game.models.tank;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.mygdx.game.states.PlayState;
+import com.mygdx.game.controllers.PlayState;
 
 import static java.lang.StrictMath.PI;
 import static java.lang.StrictMath.sin;
@@ -22,7 +22,7 @@ public class Bullet{
     private long Time=0;
     private float startX;
     private float startY;
-
+    private Rectangle rectangle;
     public Vector3 getPosition() {
         return vector3;
     }
@@ -33,17 +33,23 @@ public class Bullet{
         vector3 = new Vector3(x,y,0);
         startX=x;
         startY=y;
+        rectangle = new Rectangle();
     }
 
-    public void render(SpriteBatch sb, Texture bulletTexture)
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public void render(SpriteBatch sb, Texture bulletTexture,boolean isMove)
     {
-        if(System.currentTimeMillis()-Time>10)
+        if(isMove)
         {
             Time = System.currentTimeMillis();
             vector3.x+=12*sin(-angle*PI/180);
             vector3.x-=startX;
             vector3.y= (float) (vector3.x*-1/tan(angle*PI/180))+startY;
             vector3.x+=startX;
+            rectangle.set(vector3.x,vector3.y,bulletTexture.getWidth()* PlayState.getGOWHT(),bulletTexture.getHeight()* PlayState.getGOWHT());
 
         }
 
@@ -56,4 +62,5 @@ public class Bullet{
         sb.end();
 
     }
+
 }

@@ -1,17 +1,14 @@
-package com.mygdx.game.sprites;
+package com.mygdx.game.models.tank;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.game.states.PlayState;
+import com.mygdx.game.controllers.PlayState;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.atan;
-import static java.lang.StrictMath.tan;
 
 /**
  * Created by alex on 10.01.2017.
@@ -80,12 +77,12 @@ public class Tank {
                 angl=-90;
             wheels.setPositionWeel(getPositionTank().x+tank.getWidth()*PlayState.getGOWHT()/2, getPositionTank().y);
 
-            if(System.currentTimeMillis()-Time>300)
+            if(System.currentTimeMillis()-Time>150)
             {
                 Time = System.currentTimeMillis();
                 bullet.add(new Bullet(angl,getPositionDulo().x,getPositionDulo().y));
             }
-            System.out.println("Y= "+getPositionDulo().y+"  X="+getPositionDulo().x);
+            //System.out.println("Y= "+getPositionDulo().y+"  X="+getPositionDulo().x);
            // System.out.println("Y= "+(Gdx.graphics.getHeight()-Gdx.input.getY() -getTankTexture().getHeight()*PlayState.getGOWHT()+33)+" X= "+(getPositionTank().x+getTankTexture().getWidth()*PlayState.getGOWHT()/2-Gdx.input.getX())+"\n"+"alpf="+angl+"\n");
         }
         else
@@ -99,15 +96,15 @@ public class Tank {
 
             wheels.setPositionWeel(getPositionTank().x+tank.getWidth()*PlayState.getGOWHT()/2, getPositionTank().y);
 
-            if(System.currentTimeMillis()-Time>300)
+            if(System.currentTimeMillis()-Time>150)
             {
                 Time = System.currentTimeMillis();
                 bullet.add(new Bullet(angl,getPositionDulo().x,getPositionDulo().y));
             }
-            System.out.println("Y= "+getPositionDulo().y+"  X="+getPositionDulo().x);
+           // System.out.println("Y= "+getPositionDulo().y+"  X="+getPositionDulo().x);
             //System.out.println("Y= "+(Gdx.graphics.getHeight()-Gdx.input.getY() -getTankTexture().getHeight()*PlayState.getGOWHT()+33)+" X= "+(getPositionTank().x+getTankTexture().getWidth()*PlayState.getGOWHT()/2-Gdx.input.getX())+"\n"+"alpf="+angl+"\n");
         }
-            if(System.currentTimeMillis()-Time>300)
+            if(System.currentTimeMillis()-Time>150)
             {
                 Time = System.currentTimeMillis();
                 bullet.add(new Bullet(angl,getPositionDulo().x,getPositionDulo().y));
@@ -117,16 +114,16 @@ public class Tank {
     }
 
     public void render(SpriteBatch sb)
-    {
+    {   if(System.currentTimeMillis()-Time>10)
         for(Bullet bull: bullet )
         {   if( (bull.getPosition().y<Gdx.graphics.getHeight()&&bull.getPosition().x<Gdx.graphics.getWidth())
                 &&(bull.getPosition().y>0&&bull.getPosition().x>0) )
-            bull.render(sb, bulletTexture);
+            bull.render(sb, bulletTexture,true);
             else
         {
 
-            bullet.removeValue(bull,true);
-            System.out.println("DELETED");
+            bullet.removeValue(bull,false);
+         //   System.out.println("DELETED");
         }
         }
             sb.begin();
@@ -138,5 +135,17 @@ public class Tank {
         sb.draw(getTankTexture(), getPositionTank().x, getPositionTank().y, getTankTexture().getWidth()*PlayState.getGOWHT(), getTankTexture().getHeight()*PlayState.getGOWHT());
         sb.end();
         wheels.render(sb);
+    }
+
+    public Array<Bullet> getBullet() {
+        return bullet;
+    }
+    public void dispose()
+    {
+        tank.dispose();
+        dulo.dispose();
+        bulletTexture.dispose();
+        System.out.println("____________________________________________________________________________________________________________________");
+
     }
 }

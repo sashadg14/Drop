@@ -1,12 +1,9 @@
-package com.mygdx.game.sprites;
+package com.mygdx.game.models.tank;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
-import com.mygdx.game.states.PlayState;
-
-import static com.mygdx.game.states.PlayState.*;
+import com.mygdx.game.controllers.PlayState;
 
 /**
  * Created by alex on 22.01.2017.

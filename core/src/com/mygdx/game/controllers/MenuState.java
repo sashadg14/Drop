@@ -1,9 +1,8 @@
-package com.mygdx.game.states;
+package com.mygdx.game.controllers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.FlappyDemo;
 
 /**
  * Created by alex on 10.01.2017.
@@ -26,7 +25,7 @@ public class MenuState extends State {
 
         if(Gdx.input.justTouched())
         {
-            gsm.set(new PlayState());
+            gsm.set(new com.mygdx.game.controllers.PlayState());
         }
     }
 
