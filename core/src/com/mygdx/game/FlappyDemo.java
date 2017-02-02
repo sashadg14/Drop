@@ -25,7 +25,10 @@ private GameStateManager gsm;
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		gsm.update(Gdx.graphics.getDeltaTime());
 		gsm.render(batch);
-		//System.out.println(Gdx.graphics.getDeltaTime());
+		if (Gdx.graphics.getDeltaTime()>0.03)
+		{
+			System.out.println("______________________________ЗАДЕРЖКА");
+		}
 	}
 	
 	@Override

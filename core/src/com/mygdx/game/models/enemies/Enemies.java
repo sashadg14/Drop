@@ -56,13 +56,17 @@ public abstract class Enemies {
 
             nomberOfExplosion++;
 
-        }
+
         sb.begin();
         sb.draw(regions[nomberOfExplosion], x-30, y-100);
         sb.end();
+        }
     }
         if(nomberOfExplosion==15)
+        {
+            System.out.println("______________________________УБИТ");
             setIfDrawFire(true);
+        }
     }
     public void dispose()
     {textureWhizzbang.dispose();

@@ -48,25 +48,8 @@ public class PlayState extends State
     public void render(SpriteBatch sb)
     {
         sb.setProjectionMatrix(camera.combined);
-        level.render(sb);
+        //level.render(sb);
         tank.render(sb);
-        for( Plane plane: arrayPlanes)
-        {
-            plane.render(sb);
-            for (Bullet bullet : tank.getBullet())
-            {
-                if (bullet.getRectangle().overlaps(plane.getRect()))
-                {   plane.setIfAlive(true);
-                    tank.getBullet().removeValue(bullet,false);
-                }
-
-            }
-        if(plane.isIfDrawFire())
-        {   System.out.println( arrayPlanes.size+"++++++++++++++");
-            arrayPlanes.removeValue(plane,false);
-            arrayPlanes.add(new Plane());
-        }
-        }
 
     }
 
@@ -74,9 +57,5 @@ public class PlayState extends State
     public void dispose()
     {
         tank.dispose();
-        for(Plane plane: arrayPlanes)
-        {
-            plane.dispose();
-        }
     }
 }
